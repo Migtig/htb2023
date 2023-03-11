@@ -1,0 +1,132 @@
+/* Global Variables */
+:root {
+  /* Google Font	*/
+  --font-body: "Oswald", serif;
+  --font-headings: "Tilt Prism", sans-serif;
+}
+
+/* Resets */
+
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Typography */
+body {
+  line-height: 1.4;
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+nav a {
+  font-family: var(--font-headings);
+}
+
+/* .visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+} */
+
+/* Page Styles */
+
+/* .wrapper {
+  width: 10px;
+  height: 100vh;
+  margin: 0 auto;
+} */
+
+/* Animations */
+
+/* @keyframes playerStanding {
+  0% {
+    transform: translateX(-700px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+} */
+
+/* @keyframes play-sprite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-500px);
+  }
+} */
+
+/* Game Levels */
+
+.game-level-1 {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.controls-box {
+  background-color: #4848d5;
+  height: 30%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+
+.start,
+.quit,
+.level-info {
+  color: #fff;
+  font-size: 2rem;
+}
+
+.options-box {
+  height: 50%;
+  width: 100%;
+  background-color: #a8a8da;
+}
+.game-bg-img {
+  /* object-fit: cover; */
+  opacity: 0.8;
+}
+
+.action-box {
+  position: relative;
+}
+.player-idle-standing {
+  /* animation: playerStanding 1s steps(10) infinite; */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.gpt-idle {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.game-level-2 {
+  display: none;
+}
+.game-level-3 {
+  display: none;
+}

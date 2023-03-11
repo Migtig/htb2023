@@ -6,64 +6,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/styles.css" />
     <script src="scripts/scripts.js" defer></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;600&family=Tilt+Prism&display=swap"
+      rel="stylesheet"
+    />
+
     <title>Document</title>
   </head>
   <body>
-    <div id="start-menu"></div>
-    <div id="intro-scene"></div>
+    <div class="wrapper">
+      <section id="start-menu"></section>
+      <section id="intro-scene"></section>
 
-    <div class="game-level" id="lvl-1">
-      <div id="action-box">
-        <!-- This is where the sprites and background will go -->
-      </div>
+      <section class="game-level-1" id="lvl-1">
+        <div class="controls-box">
+          <div class="start">Start</div>
+          <div class="level-info">Level 1</div>
+          <div class="quit">Quit</div>
+        </div>
+        <div class="action-box" id="action-box">
+          <!-- This is where the sprites and background will go -->
+          <img
+            class="game-bg-img"
+            src="images/backgrounds/city.png"
+            alt="city at night"
+          />
+          <div class="sprite-container">
+            <img
+              class="gpt-idle"
+              src="images/sprites/gpt-idle-frame-1.png"
+              alt="GPT idle"
+            />
+          </div>
+          <img
+            id="sprite"
+            class="player-idle-standing"
+            src="images/sprites/player-idle.png"
+            alt="player-idle standing"
+          />
+        </div>
 
-      <div class="options-box">
-        <div class="timer"></div>
+        <div class="options-box">
+          <div class="timer"></div>
 
-        <h2 id="question"></h2>
+          <h2 id="question">Question 1</h2>
 
-        <button id="button-1"></button>
-        <button id="button-2"></button>
-        <button id="button-3"></button>
-        <button id="button-4"></button>
-      </div>
+          <div id="answers">
+            <label>
+              <input type="radio" name="answer1" id="answer-1" />
+              Answer 1
+            </label>
+            <label>
+              <input type="radio" name="answer2" id="answer-2" />
+              Answer 2
+            </label>
+            <label>
+              <input type="radio" name="answer3" id="answer-3" />
+              Answer 3
+            </label>
+            <label>
+              <input type="radio" name="answer4" id="answer-4" />
+              Answer 4
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- --------------- Game-level 2------------------ -->
+      <section class="game-level-2" id="lvl-2">
+        <div id="action-box">
+          <!-- This is where the sprites and background will go -->
+        </div>
+
+        <div class="options-box">
+          <div class="timer"></div>
+
+          <h2 id="question"></h2>
+
+          <div id="answers">
+            <label>
+              <input type="radio" name="answer" id="answer-1" />
+              <span id="button-1"></span>
+            </label>
+            <label>
+              <input type="radio" name="answer" id="answer-2" />
+              <span id="button-2"></span>
+            </label>
+            <label>
+              <input type="radio" name="answer" id="answer-3" />
+              <span id="button-3"></span>
+            </label>
+            <label>
+              <input type="radio" name="answer" id="answer-4" />
+              <span id="button-4"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section class="game-level-3" id="lvl-3">
+        <div id="action-box">
+          <!-- This is where the sprites and background will go -->
+        </div>
+
+        <div class="options-box">
+          <div class="timer"></div>
+
+          <h2 id="question"></h2>
+
+          <div id="answers">
+            <label>
+              <input type="radio" name="answer" id="answer-1" />
+              <span id="button-1"></span>
+            </label>
+            <label>
+              <input type="radio" name="answer" id="answer-2" />
+              <span id="button-2"></span>
+            </label>
+            <label>
+              <input type="radio" name="answer" id="answer-3" />
+              <span id="button-3"></span>
+            </label>
+            <label>
+              <input type="radio" name="answer" id="answer-4" />
+              <span id="button-4"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section id="game-over-screen"></section>
+      <section id="you-win-screen"></section>
     </div>
-
-    <div class="game-level" id="lvl-2">
-      <div id="action-box">
-        <!-- This is where the sprites and background will go -->
-      </div>
-
-      <div class="options-box">
-        <div class="timer"></div>
-
-        <h2 id="question"></h2>
-
-        <button id="button-1"></button>
-        <button id="button-2"></button>
-        <button id="button-3"></button>
-        <button id="button-4"></button>
-      </div>
-    </div>
-
-    <div class="game-level" id="lvl-3">
-      <div id="action-box">
-        <!-- This is where the sprites and background will go -->
-      </div>
-
-      <div class="options-box">
-        <div class="timer"></div>
-
-        <h2 id="question"></h2>
-
-        <button id="button-1"></button>
-        <button id="button-2"></button>
-        <button id="button-3"></button>
-        <button id="button-4"></button>
-      </div>
-    </div>
-
-    <div id="game-over-screen"></div>
-    <div id="you-win-screen"></div>
   </body>
 </html>
