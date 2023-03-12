@@ -109,6 +109,25 @@ const questionsBank = [
 
 let questions = questionsBank;
 
+const gptSprite = document.getElementById("gpt-sprite");
+const startGameBtn = document.getElementById("start-game");
+const startMenu = document.getElementById("start-menu");
+const introScene = document.getElementById("intro-scene");
+const continueBtn = document.getElementById("continue");
+const gameBox = document.getElementById("game-box");
+const wrapper = document.querySelector(".wrapper");
+
+
+startGameBtn.addEventListener("click", function () {
+  startMenu.style.display = "none";
+  introScene.style.display = "block";
+});
+
+continueBtn.addEventListener("click", function () {
+  introScene.style.display = "none";
+  gameBox.style.display = "flex";
+  wrapper.style.maxWidth = "800px";
+});
 
 const game = {
   startBtn: document.getElementById('start-btn'),
