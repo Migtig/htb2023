@@ -244,16 +244,17 @@ const game = {
     game.stopTimer();
     oldLevel = game.level;
 
+    game.questionE.style.display = "none";
+    game.answer1E.style.display = "none";
+    game.answer2E.style.display = "none";
+    game.answer3E.style.display = "none";
+    
     if (answer === game.currentQuestion.answer) {
       game.hitEnemy();
     } else {
       game.hitPlayer();
     }
 
-    game.questionE.style.display = "none";
-    game.answer1E.style.display = "none";
-    game.answer2E.style.display = "none";
-    game.answer3E.style.display = "none";
 
     console.log(game.eHealth, game.pHealth)
     if (oldLevel == game.level) {
@@ -283,7 +284,6 @@ const game = {
   stopTimer: function () {
     clearInterval(game.timerInterval);
     game.timerInterval = undefined;
-    console.log(game.timerInterval)
     // game.timerE.style.display = 'none';
   },
 
@@ -320,8 +320,7 @@ const game = {
   },
 
   // Initializes the level
-  startLevel: function (level) {},
-};
+  startLevel: function (level) {
     if (game.timerInterval !== undefined) {
       game.stopTimer();
     }
@@ -331,6 +330,10 @@ const game = {
     game.populateEHealth(4 + level);
     game.populatePHealth(3);
     game.generateQuestion();
+
+  },
+};
+
     
 game.startBtn.addEventListener("click", function () {
   game.startLevel(1);
