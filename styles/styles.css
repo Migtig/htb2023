@@ -2,7 +2,7 @@
 :root {
   /* Google Font	*/
   --font: "Oswald", serif;
-  /* --font-headings: "Oswald", sans-serif; */
+  --font-headings: "Tilt Prism", sans-serif;
 }
 
 /* Resets */
@@ -14,6 +14,8 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
+  margin: 0;
+  padding: 0;
 }
 
 img {
@@ -34,52 +36,84 @@ nav a {
   font-family: var(--font);
 }
 
-/* .visually-hidden {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
-} */
+body {
+  background-color: #323284;
+}
 
-/* Page Styles */
-
-/* .wrapper {
-  width: 10px;
-  height: 100vh;
+.wrapper {
+  max-width: 600px;
   margin: 0 auto;
-} */
+}
+/* Start Page */
 
-/* Animations */
+.uniform {
+  fill: #000000;
+}
 
-/* @keyframes playerStanding {
+svg path {
+  stroke-width: 4px;
+  fill: none;
+  animation: stroke 5s infinite;
+}
+
+@keyframes stroke {
   0% {
-    transform: translateX(-700px);
+    stroke: rgb(113, 5, 5);
+  }
+  25% {
+    stroke: rgb(127, 85, 8);
+  }
+  50% {
+    stroke: rgb(149, 149, 8);
+  }
+  75% {
+    stroke: rgb(16, 128, 16);
   }
   100% {
-    transform: translateX(0px);
+    stroke: rgb(13, 13, 135);
   }
-} */
+}
 
-/* @keyframes play-sprite {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-500px);
-  }
-} */
+.start-menu {
+  background-color: beige;
+  height: 100vh;
+}
+.start-game {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 2.5rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  width: fit-content;
+  margin: 0 auto;
+  background-color: #a8a8da;
+}
+
+/* Intro Scene */
+
+.intro-scene {
+  display: none;
+  background-color: #181818;
+  height: 100%;
+  padding: 1rem;
+}
+
+.intro-scene p {
+  color: #fff;
+  padding: 2rem;
+  font-size: 1.2rem;
+}
+
+.intro-scene p:last-of-type {
+  padding-bottom: 5rem;
+}
 
 /* Game Levels */
 
-.game-level-1 {
+.game-box {
   height: 100%;
   width: 100%;
-  display: flex;
+  display: none;
   flex-wrap: wrap;
 }
 .controls-box {
@@ -96,6 +130,10 @@ nav a {
 .level-info {
   color: #fff;
   font-size: 2rem;
+}
+
+.level-info {
+  font-family: var(--font-headings);
 }
 
 .options-box {
@@ -133,9 +171,22 @@ label {
   padding: 2rem;
 }
 
-.game-level-2 {
+/* .game-box,
+.intro-scene,
+.start-menu {
   display: none;
+} */
+
+.game-over-screen {
+  background-color: #000000;
+  height: 100vh;
 }
-.game-level-3 {
-  display: none;
+
+.game-over-screen p {
+  color: #fff;
+}
+
+.game-over-screen p:first-of-type {
+  font-size: 4rem;
+  text-align: center;
 }
