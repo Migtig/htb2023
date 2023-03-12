@@ -184,6 +184,24 @@ svg path {
   }
 }
 
+.player-attack {
+  background-image: url(../images/sprites/player-attack.png);
+  width: 96px;
+  height: 96px;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  animation: playerAttack 1.5s steps(5) 1;
+}
+
+@keyframes playerAttack {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -480px 0;
+  }
+}
+
 #player-health {
   position: absolute;
   bottom: 4rem;
