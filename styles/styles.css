@@ -79,7 +79,7 @@ svg path {
 .start-menu {
   display: block;
   background-color: beige;
-  height: 100vh;
+  height: 100%;
 }
 .start-game {
   text-transform: uppercase;
@@ -90,6 +90,7 @@ svg path {
   width: fit-content;
   margin: 0 auto;
   background-color: #a8a8da;
+  cursor: pointer;
 }
 
 /* Intro Scene */
