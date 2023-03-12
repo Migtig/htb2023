@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/styles.css" />
-    <script src="scripts/scripts.js" defer></script>
+    <script src="scripts/questions.js" defer></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,6 +18,8 @@
   </head>
   <body>
     <div class="wrapper">
+
+      <!--------------- START MENU Screen --------------->
       <section class="start-menu" id="start-menu">
         <!-- <img src="images/logo.svg" alt="logo" /> -->
         <svg
@@ -85,6 +87,9 @@
         </svg>
         <div class="start-game" id="start-game">Start Game</div>
       </section>
+
+
+      <!--------------- INTRO Screen --------------->
       <section class="intro-scene" id="intro-scene">
         <p>
           The year is 2023. AI is taking over. You are a plucky developer,
@@ -112,54 +117,50 @@
         <div class="continue start-game" id="continue">Continue ...</div>
       </section>
 
+
+      <!--------------- LEVEL/GAMEPLAY Screen --------------->
       <section class="game-box" id="game-box">
         <div class="controls-box">
-          <div class="start">Start</div>
+          <div class="start" id="start-btn">Start</div>
           <div class="level-info">Level 1</div>
-          <div class="quit">Quit</div>
+          <div class="quit" id="quit-btn">Quit</div>
         </div>
+
         <div class="action-box" id="action-box">
           <img
             class="game-bg-img"
             src="images/backgrounds/city.png"
             alt="city at night"
           />
-          <div class="gpt-sprite-container">
-            <img
-              id="gpt-sprite"
-              class="gpt-idle"
-              src="images/sprites/gpt-idle-frame1.png"
-              alt="GPT idle"
-            />
-          </div>
-          <img
-            class="player-idle-standing"
-            src="images/sprites/player-idle.png"
-            alt="player-idle standing"
-          />
-        </div>
-        <div class="options-box">
-          <div class="timer"></div>
 
-          <h2 id="question">What does CSS stand for?</h2>
+          <div
+            id="gpt-sprite"
+            class="gpt-idle"
+          ></div>
+
+          <div id="gpt-health">5</div>
+
+          <div class="player-idle" id="player-sprite">
+
+          </div>
+          <div id="player-health">3</div>
+        </div>
+
+        <div class="options-box">
+          <div id="timer"></div>
+
+          <h2 id="question"></h2>
 
           <div class="answers" id="answers">
-            <label>
-              <input type="radio" name="answer1" id="answer-1" />
-              A) Creative Style Sheets
-            </label>
-            <label>
-              <input type="radio" name="answer2" id="answer-2" />
-              B) Cascading Style Shapes
-            </label>
-            <label>
-              <input type="radio" name="answer3" id="answer-3" />
-              C) Computer Science Standards
-            </label>
+            <button type="button" class="answer-btn" id="answer-1"></button>
+            <button type="button" class="answer-btn" id="answer-2"></button>
+            <button type="button" class="answer-btn" id="answer-3"></button>
           </div>
         </div>
+
       </section>
 
+      <!--------------- GAME OVER Screen --------------->
       <section id="game-over-screen" class="game-over-screen">
         <p>Game Over</p>
         <p>
@@ -169,7 +170,11 @@
           and you have to move back to Calgary...
         </p>
       </section>
-      <section id="you-win-screen" class="you-win-screen"></section>
+
+
+      <section id="you-win-screen" class="you-win-screen">
+
+      </section>
     </div>
   </body>
 </html>
