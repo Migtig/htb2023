@@ -38,7 +38,7 @@
             <img
               id="sprite"
               class="gpt-idle"
-              src="images/sprites/gpt-idle-frame-1.png"
+              src="images/sprites/gpt-idle-frame1.png"
               alt="GPT idle"
             />
           </div>
@@ -52,24 +52,32 @@
         <div class="options-box">
           <div class="timer"></div>
 
-          <h2 id="question">Question 1</h2>
+          <h2 id="question">
+            What is the difference between "display="none" and
+            "visibility:hidden" in CSS?
+          </h2>
 
-          <div id="answers">
+          <div class="answers" id="answers">
             <label>
               <input type="radio" name="answer1" id="answer-1" />
-              Answer 1
+              A) "display:none" removes the element from the page flow, while
+              "visibility:hidden" hides the element without affecting the page
+              flow.
             </label>
             <label>
               <input type="radio" name="answer2" id="answer-2" />
-              Answer 2
+              B) "display:none" hides the element without affecting the page
+              flow, while "visibility:hidden" removes the element from the page
+              flow.
             </label>
             <label>
               <input type="radio" name="answer3" id="answer-3" />
-              Answer 3
+              C) "display:none" and "visibility:hidden" are the same thing.
             </label>
             <label>
               <input type="radio" name="answer4" id="answer-4" />
-              Answer 4
+              D) "display:none" and "visibility:hidden" both remove the element
+              from the page flow.
             </label>
           </div>
         </div>

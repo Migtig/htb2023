@@ -1,8 +1,8 @@
 /* Global Variables */
 :root {
   /* Google Font	*/
-  --font-body: "Oswald", serif;
-  --font-headings: "Tilt Prism", sans-serif;
+  --font: "Oswald", serif;
+  /* --font-headings: "Oswald", sans-serif; */
 }
 
 /* Resets */
@@ -24,14 +24,14 @@ img {
 /* Typography */
 body {
   line-height: 1.4;
-  font-family: var(--font-body);
+  font-family: var(--font);
 }
 
 h1,
 h2,
 h3,
 nav a {
-  font-family: var(--font-headings);
+  font-family: var(--font);
 }
 
 /* .visually-hidden {
@@ -122,6 +122,15 @@ nav a {
   position: absolute;
   right: 0;
   top: 0;
+}
+
+label {
+  display: block;
+  padding: 0.5rem;
+}
+
+.options-box {
+  padding: 2rem;
 }
 
 .game-level-2 {

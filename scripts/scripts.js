@@ -17,4 +17,4 @@ function animateSprite() {
   }
 }
 
-setInterval(animateSprite, 1000);
+setInterval(animateSprite, 400);
