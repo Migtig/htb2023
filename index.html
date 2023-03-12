@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/styles.css" />
-    <script src="scripts/scripts.js" defer></script>
+    <script src="scripts/questions.js" defer></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,11 +26,11 @@
 
       </section>
 
-      <section class="game-level-1" id="lvl-1">
+      <section class="game-level" id="lvl">
         <div class="controls-box">
-          <div class="start">Start</div>
+          <div class="start" id="start-btn">Start</div>
           <div class="level-info">Level 1</div>
-          <div class="quit">Quit</div>
+          <div class="quit" id="quit-btn">Quit</div>
         </div>
 
         <div class="action-box" id="action-box">
@@ -40,116 +40,30 @@
             src="images/backgrounds/city.png"
             alt="city at night"
           />
-          <div class="gpt-sprite-container">
-            <img
-              id="gpt-sprite"
-              class="gpt-idle"
-              src="images/sprites/gpt-idle-frame1.png"
-              alt="GPT idle"
-            />
+
+          <div
+            id="gpt-sprite"
+            class="gpt-idle"
+          ></div>
+
+          <div id="gpt-health">5</div>
+
+          <div class="player-idle" id="player-sprite">
+
           </div>
-          <div id="enemy-health">5</div>
-          <img
-            class="player-idle-standing"
-            id="player-sprite"
-            src="images/sprites/player-idle.png"
-            alt="player-idle standing"
-          />
           <div id="player-health">3</div>
         </div>
+
+
         <div class="options-box">
           <div id="timer"></div>
 
-          <h2 id="question">What does CSS stand for?</h2>
-
-          <div class="answers" id="answers">
-            <label>
-              <input type="radio" name="answer1" id="answer-1" />
-              A) Creative Style Sheets
-            </label>
-            <label>
-              <input type="radio" name="answer2" id="answer-2" />
-              B) Cascading Style Shapes
-            </label>
-            <label>
-              <input type="radio" name="answer3" id="answer-3" />
-              C) Cascading Style Sheets
-            </label>
-            <!-- <label>
-              <input type="radio" name="answer4" id="answer-4" />
-              D) Cascading Style Sheets
-            </label> -->
-          </div>
-        </div>
-      </section>
-
-      <!-- --------------- Game-level 2------------------ -->
-      <section class="game-level-2" id="lvl-2">
-        <div id="action-box">
-          <!-- This is where the sprites and background will go -->
-        </div>
-
-        <div class="options-box">
-          <div class="timer"></div>
-
-          <h2 id="question">
-            What is the difference between "display="none" and
-            "visibility:hidden" in CSS?
-          </h2>
-
-          <div class="answers" id="answers">
-            <label>
-              <input type="radio" name="answer1" id="answer-1" />
-              A) "display:none" removes the element from the page flow, while
-              "visibility:hidden" hides the element without affecting the page
-              flow.
-            </label>
-            <label>
-              <input type="radio" name="answer2" id="answer-2" />
-              B) "display:none" hides the element without affecting the page
-              flow, while "visibility:hidden" removes the element from the page
-              flow.
-            </label>
-            <label>
-              <input type="radio" name="answer3" id="answer-3" />
-              C) "display:none" and "visibility:hidden" are the same thing.
-            </label>
-            <label>
-              <input type="radio" name="answer4" id="answer-4" />
-              D) "display:none" and "visibility:hidden" both remove the element
-              from the page flow.
-            </label>
-          </div>
-        </div>
-      </section>
-
-      <section class="game-level-3" id="lvl-3">
-        <div id="action-box">
-          <!-- This is where the sprites and background will go -->
-        </div>
-
-        <div class="options-box">
-          <div class="timer"></div>
-
           <h2 id="question"></h2>
 
-          <div id="answers">
-            <label>
-              <input type="radio" name="answer" id="answer-1" />
-              <span id="button-1"></span>
-            </label>
-            <label>
-              <input type="radio" name="answer" id="answer-2" />
-              <span id="button-2"></span>
-            </label>
-            <label>
-              <input type="radio" name="answer" id="answer-3" />
-              <span id="button-3"></span>
-            </label>
-            <label>
-              <input type="radio" name="answer" id="answer-4" />
-              <span id="button-4"></span>
-            </label>
+          <div class="answers" id="answers">
+            <button type="button" class="answer-btn" id="answer-1"></button>
+            <button type="button" class="answer-btn" id="answer-2"></button>
+            <button type="button" class="answer-btn" id="answer-3"></button>
           </div>
         </div>
       </section>

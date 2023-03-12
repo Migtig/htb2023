@@ -111,80 +111,147 @@ let questions = questionsBank;
 
 
 const game = {
+  startBtn: document.getElementById('start-btn'),
+
+  // Elements for the player and enemy sprites
   enemyE: document.getElementById('gpt-sprite'),
   playerE: document.getElementById('player-sprite'),
 
+  // Keeps track of the current level
+  level: 1,
+
+  // Keeps track of the current question
   currentQuestion: undefined,
 
+  // Elements for the question and answers
   questionE: document.getElementById('question'),
   answer1E: document.getElementById('answer-1'),
   answer2E: document.getElementById('answer-2'),
   answer3E: document.getElementById('answer-3'),
 
-  timer: 20,
+  // Keeps track of the timer
+  timer: undefined,
   timerE: document.getElementById('timer'),
 
+  // Keeps track of the player and enemy health
   pHealth: 3,
   pHealthE: document.getElementById('player-health'),
-
   eHealth: 5,
-  eHealthE: document.getElementById('enemy-health'),
+  eHealthE: document.getElementById('gpt-health'),
 
   generateQuestion: function() {
+    // Picks a random question from the bank of unanswered questions, then removes it from the bank so it can't be picked again
     game.currentQuestion = questions[Math.floor(Math.random() * questions.length)];
     questions = questions.filter((index) => {
       return index !== game.currentQuestion;
-  })
+    })
+
+    // Displays the question and answers
     game.questionE.textContent = game.currentQuestion.question;
     game.answer1E.textContent = game.currentQuestion.choices[0];
     game.answer2E.textContent = game.currentQuestion.choices[1];
     game.answer3E.textContent = game.currentQuestion.choices[2];
+
+    game.questionE.style.display = 'block';
+    game.answer1E.style.display = 'block';
+    game.answer2E.style.display = 'block';
+    game.answer3E.style.display = 'block';
+
+    // Starts the timer
+    game.startTimer(game.level);
   },
 
+  // Damages the player
   hitPlayer: function() {
     game.pHealth -= 1;
     game.pHealthE.textContent = game.pHealth;
+    if (game.pHealth === 0) {
+      game.playerDeath();
+    }
   },
 
+  // Damages the enemy
   hitEnemy: function() {
     game.eHealth -= 1;
     game.eHealthE.textContent = game.eHealth;
+    if (game.eHealth === 0) {
+      game.enemyDeath();
+    }
   },
 
+  // Animates the death of the enemy
   enemyDeath: function() {
+    console.log('enemy death');
     // TODO: Add enemy death animation
   },
 
+  // Animates the death of the player
   playerDeath: function() {
+    console.log('player death');
     // TODO: Add player death animation
   },
 
+  // Checks if a question was answered correctly
   checkAnswer: function(answer) {
+    // Stops the timer
+    game.stopTimer();
+
+
     if (answer === game.currentQuestion.answer) {
       game.hitEnemy();
     } else {
       game.hitPlayer();
     }
+
+    game.questionE.style.display = 'none';
+    game.answer1E.style.display = 'none';
+    game.answer2E.style.display = 'none';
+    game.answer3E.style.display = 'none';
   },
 
+  // Counts down the timer by 1 second
   countTimerDown: function() {
     game.timerE.textContent = game.timer;
     game.timer -= 1;
     if (game.timer === 0) {
       game.hitPlayer();
-      game.timer = 20;
+      game.stopTimer();
     }
   },
 
-  startTimer: function() {
+  // Starts the timer
+  startTimer: function(level) {
+    game.timer = 40 - (level * 10);
+    game.timerE.style.display = 'block';
     game.timerE.textContent = game.timer;
     setInterval(game.countTimerDown, 1000);
   },
 
+  // Stops the timer
   stopTimer: function() {
-    clearInterval(game.countTimerDown);
+    clearInterval(game.countTimerDown, 1000);
+    game.timerE.style.display = 'none';
+  },
+
+  // Initializes the level
+  startLevel: function(level) {
+
   },
 
 
-
 }
+
+
+game.startBtn.addEventListener('click', function() {
+  game.generateQuestion();
+
+  game.answer1E.addEventListener('click', function() {
+    game.checkAnswer(game.currentQuestion.choices[0]);
+  });
+  game.answer2E.addEventListener('click', function() {
+    game.checkAnswer(game.currentQuestion.choices[1]);
+  });
+  game.answer3E.addEventListener('click', function() {
+    game.checkAnswer(game.currentQuestion.choices[2]);
+  });
+});

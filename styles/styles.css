@@ -46,42 +46,16 @@ nav a {
   border: 0 !important;
 } */
 
-/* Page Styles */
-
-/* .wrapper {
-  width: 10px;
-  height: 100vh;
-  margin: 0 auto;
-} */
-
-/* Animations */
-
-/* @keyframes playerStanding {
-  0% {
-    transform: translateX(-700px);
-  }
-  100% {
-    transform: translateX(0px);
-  }
-} */
-
-/* @keyframes play-sprite {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-500px);
-  }
-} */
-
 /* Game Levels */
 
-.game-level-1 {
+
+.game-level {
   height: 100%;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
 }
+
 .controls-box {
   background-color: #4848d5;
   height: 30%;
@@ -98,9 +72,14 @@ nav a {
   font-size: 2rem;
 }
 
+.start {
+  cursor: pointer;
+}
+
 .options-box {
   height: 50%;
   width: 100%;
+  padding: 2rem;
   background-color: #a8a8da;
 }
 .game-bg-img {
@@ -111,31 +90,94 @@ nav a {
 .action-box {
   position: relative;
 }
-.player-idle-standing {
-  /* animation: playerStanding 1s steps(10) infinite; */
+
+#player-sprite {
   position: absolute;
   left: 0;
   bottom: 0;
 }
 
-.gpt-idle {
+.player-idle {
+  background-image: url(../images/sprites/player-idle.png);
+  width: 96px;
+  height: 96px;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  animation: playerIdle 1s steps(7) infinite;
+}
+
+@keyframes playerIdle {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -672px 0;
+  }
+}
+
+#player-health {
   position: absolute;
-  right: 0;
-  top: 0;
+  bottom: 4rem;
+  left: 5rem;
+  width: 2rem;
+
+  text-align: center;
+  font-size: 2rem;
+  background-color: white;
 }
 
-label {
-  display: block;
-  padding: 0.5rem;
+#gpt-sprite {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
 }
 
-.options-box {
-  padding: 2rem;
+.gpt-idle {
+  background-image: url(../images/sprites/gpt-idle.png);
+  width: 96px;
+  height: 96px;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  animation: gptIdle 1s steps(4) infinite;
 }
 
-.game-level-2 {
+@keyframes gptIdle {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -384px 0;
+  }
+}
+
+#gpt-health {
+  position: absolute;
+  top: 2rem;
+  right: 9rem;
+  width: 2rem;
+
+  text-align: center;
+  font-size: 2rem;
+  background-color: white;
+}
+
+#timer {
+  margin: 0 auto;
+  text-align: center;
+}
+
+#question {
   display: none;
 }
-.game-level-3 {
+
+.answer-btn {
   display: none;
+  background-color: #4848d5;
+  border: none;
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
+  font-size: 2rem;
+  margin: 4px;
+  cursor: pointer;
 }
