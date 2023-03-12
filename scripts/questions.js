@@ -1,6 +1,5 @@
 // Question Bank
 const questionsBank = [
-  // Level 1
   {
     question: "What does HTML stand for?",
     choices: [
@@ -38,7 +37,6 @@ const questionsBank = [
     choices: ["<a>", "<h>", "<p>"],
     answer: "<a>",
   },
-  // Level 2
   {
     question: "What is a closure in JavaScript?",
     choices: [
@@ -69,7 +67,6 @@ const questionsBank = [
     choices: ["<div>", "<section>", "<article>"],
     answer: "<div>",
   },
-  // Level 3
   {
     question: "What is the difference between == and === in JavaScript?",
     choices: [
@@ -105,6 +102,83 @@ const questionsBank = [
     choices: ["pop()", "splice()", "slice()"],
     answer: "splice()",
   },
+  {
+    question: "What does HTTP stand for?",
+    choices: ["Hyper Text Transfer Protocol", "Hyperlinks and Text Transfer Protocol", "Home Tool Transfer Protocol"],
+    answer: "Hyper Text Transfer Protocol",
+  },
+  {
+    question: "What is the difference between a GET and a POST request?",
+    choices: [
+      "GET requests data from a server, while POST submits data to a server",
+      "POST requests data from a server, while GET submits data to a server",
+      "GET and POST are the same type of request",
+    ],
+    answer: "GET requests data from a server, while POST submits data to a server",
+  },
+  {
+    question: "What is a CSS selector?",
+    choices: ["A pattern that matches HTML elements to apply styles to", "A function that selects elements in JavaScript", "A type of HTML tag"],
+    answer: "A pattern that matches HTML elements to apply styles to",
+  },
+  {
+    question: "What is the HTML tag used to create a table?",
+    choices: ["<table>", "<tr>", "<td>"],
+    answer: "<table>",
+  },
+  {
+    question: "What is the CSS property used to center an element horizontally?",
+    choices: ["text-align", "margin-left", "margin-right"],
+    answer: "margin: 0 auto;",
+  },
+  {
+    question: "What is the JavaScript method used to convert a string to a number?",
+    choices: ["parseInt()", "toString()", "toFixed()"],
+    answer: "parseInt()",
+  },
+  {
+    question: "What is the HTML tag used to create a line break?",
+    choices: ["<br>", "<hr>", "<p>"],
+    answer: "<br>",
+  },
+  {
+    question: "What is the CSS property used to make an element's font bold?",
+    choices: ["font-weight", "font-size", "text-transform"],
+    answer: "font-weight",
+  },
+  {
+    question: "What is the JavaScript method used to add an element to the beginning of an array?",
+    choices: ["unshift()", "shift()", "pop()"],
+    answer: "unshift()",
+  },
+  {
+    question: "What is the HTML tag used to create an unordered list?",
+    choices: ["<ul>", "<li>", "<ol>"],
+    answer: "<ul>",
+  },
+  {
+    question: "What is the difference between null and undefined in JavaScript?",
+    choices: [
+      "null is an intentional absence of any object value, while undefined is the absence of a value",
+      "undefined is an intentional absence of any object value, while null is the absence of a value",
+      "null and undefined are the same thing",
+    ],
+    answer: "null is an intentional absence of any object value, while undefined is the absence of a value",
+  },
+  {
+    question: "What is the CSS property used to create a gradient?",
+    choices: ["background-image", "background-color", "gradient"],
+    answer: "background-image",
+  },
+  {
+    question: "What is a callback function in JavaScript?",
+    choices: [
+      "A function that is passed as an argument to another function and is executed when an event occurs",
+      "A function that returns another function",
+      "A function that is called when the page loads",
+    ],
+    answer: "A function that is passed as an argument to another function and is executed when an event occurs",
+  }
 ];
 
 let questions = questionsBank;
@@ -114,11 +188,13 @@ const startGameBtn = document.getElementById("start-game");
 const startMenu = document.getElementById("start-menu");
 const introScene = document.getElementById("intro-scene");
 const continueBtn = document.getElementById("continue");
-const playAgainBtn = document.getElementById("play-again");
+const gameoverPlayAgainBtn = document.getElementById("gameover-play-again");
+const wingamePlayAgainBtn = document.getElementById("wingame-play-again");
 const winScreen = document.getElementById("you-win-screen");
 const gameOverScreen = document.getElementById("game-over-screen");
 const gameBox = document.getElementById("game-box");
 const wrapper = document.querySelector(".wrapper");
+const levelInfo = document.querySelector(".level-info")
 
 startGameBtn.addEventListener("click", function () {
   startMenu.style.display = "none";
@@ -129,12 +205,28 @@ continueBtn.addEventListener("click", function () {
   introScene.style.display = "none";
   gameBox.style.display = "flex";
   wrapper.style.maxWidth = "800px";
+  game.level = 1;
+  game.startLevel(game.level);
 });
 
-playAgainBtn.addEventListener("click", function () {
+gameoverPlayAgainBtn.addEventListener("click", function () {
   winScreen.style.display = "none";
   gameOverScreen.style.display = "none";
   gameBox.style.display = "flex";
+  wrapper.style.maxWidth = "800px";
+  questions = questionsBank;
+  game.level = 1;
+  game.startLevel(game.level);
+});
+
+wingamePlayAgainBtn.addEventListener("click", function () {
+  winScreen.style.display = "none";
+  gameOverScreen.style.display = "none";
+  gameBox.style.display = "flex";
+  wrapper.style.maxWidth = "800px";
+  questions = questionsBank;
+  game.level = 1;
+  game.startLevel(game.level);
 });
 
 
@@ -208,6 +300,20 @@ const game = {
   hitPlayer: function () {
     game.pHealth -= 1;
     game.pHealthE.lastChild.remove();
+
+    // game.enemyE.classList.remove("gpt-idle");
+    // game.enemyE.classList.add("gpt-attack");
+    // setTimeout(game.enemyE.classList.remove("gpt-attack"), 1500);
+    // setTimeout(game.enemyE.classList.add("gpt-idle"), 1500);
+
+    // setTimeout(function() {
+    //   game.playerE.classList.remove("player-idle")
+    //   game.playerE.classList.add("player-hurt")
+    //   setTimeout(game.playerE.classList.remove("player-hurt"), 1500)
+    //   setTimeout(game.playerE.classList.add("player-idle"), 1500)
+    // }, 1500)
+
+    
     if (game.pHealth === 0) {
       game.playerDeath();
     }
@@ -229,12 +335,16 @@ const game = {
   // Animates the death of the enemy
   enemyDeath: function () {
     console.log("enemy death");
+    gameBox.style.display = "none";
+    winScreen.style.display = "block";
     // TODO: Add enemy death animation
   },
 
   // Animates the death of the player
   playerDeath: function () {
     console.log("player death");
+    gameBox.style.display = "none";
+    gameOverScreen.style.display = "block";
     // TODO: Add player death animation
   },
 
@@ -248,7 +358,7 @@ const game = {
     game.answer1E.style.display = "none";
     game.answer2E.style.display = "none";
     game.answer3E.style.display = "none";
-    
+
     if (answer === game.currentQuestion.answer) {
       game.hitEnemy();
     } else {
@@ -326,25 +436,21 @@ const game = {
     }
 
     console.log(level);
+    levelInfo.innerHTML = `Level ${game.level}`;
     game.background.src = `./images/backgrounds/bg-lvl-${level}.png`;
     game.populateEHealth(4 + level);
     game.populatePHealth(3);
     game.generateQuestion();
-
   },
 };
 
-    
-game.startBtn.addEventListener("click", function () {
-  game.startLevel(1);
 
-  game.answer1E.addEventListener("click", function () {
-    game.checkAnswer(game.currentQuestion.choices[0]);
-  });
-  game.answer2E.addEventListener("click", function () {
-    game.checkAnswer(game.currentQuestion.choices[1]);
-  });
-  game.answer3E.addEventListener("click", function () {
-    game.checkAnswer(game.currentQuestion.choices[2]);
-  });
+game.answer1E.addEventListener("click", function () {
+  game.checkAnswer(game.currentQuestion.choices[0]);
+});
+game.answer2E.addEventListener("click", function () {
+  game.checkAnswer(game.currentQuestion.choices[1]);
+});
+game.answer3E.addEventListener("click", function () {
+  game.checkAnswer(game.currentQuestion.choices[2]);
 });
