@@ -129,12 +129,20 @@ continueBtn.addEventListener("click", function () {
   wrapper.style.maxWidth = "800px";
 });
 
+
+
+
+
+
+// GAME OBJECT
+// ____________________________________________________________
 const game = {
   startBtn: document.getElementById('start-btn'),
 
-  // Elements for the player and enemy sprites
+  // Game stage elements
   enemyE: document.getElementById('gpt-sprite'),
   playerE: document.getElementById('player-sprite'),
+  background: document.getElementById('background'),
 
   // Keeps track of the current level
   level: 1,
@@ -184,7 +192,7 @@ const game = {
   // Damages the player
   hitPlayer: function() {
     game.pHealth -= 1;
-    game.pHealthE.textContent = game.pHealth;
+    game.pHealthE.lastChild.remove();
     if (game.pHealth === 0) {
       game.playerDeath();
     }
@@ -193,9 +201,13 @@ const game = {
   // Damages the enemy
   hitEnemy: function() {
     game.eHealth -= 1;
-    game.eHealthE.textContent = game.eHealth;
-    if (game.eHealth === 0) {
+    game.eHealthE.lastChild.remove();
+    if ((game.eHealth === 0) && (game.level === 3)) {
       game.enemyDeath();
+    }
+    else if (game.eHealth === 0) {
+      game.level += 1;
+      game.startLevel(game.level);
     }
   },
 
@@ -227,6 +239,10 @@ const game = {
     game.answer1E.style.display = 'none';
     game.answer2E.style.display = 'none';
     game.answer3E.style.display = 'none';
+
+    if ((game.eHealth > 0) && (game.pHealth > 0)) {
+      game.generateQuestion();
+    }
   },
 
   // Counts down the timer by 1 second
@@ -253,9 +269,33 @@ const game = {
     // game.timerE.style.display = 'none';
   },
 
+  populatePHealth: function(health) {
+    game.pHealth = health;
+    for (let i = 0; i < health; i++) {
+      let healthE = document.createElement('img');
+      healthE.classList.add('health');
+      healthE.src = './images/sprites/health.png';
+      game.pHealthE.appendChild(healthE);
+    }
+  },
+
+  populateEHealth: function(health) {
+    game.eHealth = health;
+    for (let i = 0; i < health; i++) {
+      let healthE = document.createElement('img');
+      healthE.classList.add('health');
+      healthE.src = './images/sprites/health.png';
+      game.eHealthE.appendChild(healthE);
+    }
+  },
+
   // Initializes the level
   startLevel: function(level) {
-
+    game.background.src = `./images/backgrounds/bg-lvl-${level}.png`;
+    game.populateEHealth(4 + level);
+    game.populatePHealth(3);
+    game.generateQuestion();
+    
   },
 
 
@@ -263,7 +303,7 @@ const game = {
 
 
 game.startBtn.addEventListener('click', function() {
-  game.generateQuestion();
+  game.startLevel();
 
   game.answer1E.addEventListener('click', function() {
     game.checkAnswer(game.currentQuestion.choices[0]);
