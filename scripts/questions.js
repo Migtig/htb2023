@@ -168,11 +168,17 @@ const game = {
   eHealthE: document.getElementById('gpt-health'),
 
   generateQuestion: function() {
+    // if (game.timerInterval !== undefined) {
+    //   return;
+    // }
+
     // Picks a random question from the bank of unanswered questions, then removes it from the bank so it can't be picked again
     game.currentQuestion = questions[Math.floor(Math.random() * questions.length)];
     questions = questions.filter((index) => {
       return index !== game.currentQuestion;
     })
+
+    console.log(questions.length)
 
     // Displays the question and answers
     game.questionE.textContent = game.currentQuestion.question;
@@ -228,6 +234,7 @@ const game = {
     // Stops the timer
     game.stopTimer();
 
+    oldLevel = game.level;
 
     if (answer === game.currentQuestion.answer) {
       game.hitEnemy();
@@ -240,7 +247,8 @@ const game = {
     game.answer2E.style.display = 'none';
     game.answer3E.style.display = 'none';
 
-    if ((game.eHealth > 0) && (game.pHealth > 0)) {
+    console.log(game.eHealth, game.pHealth)
+    if (oldLevel == game.level) {
       game.generateQuestion();
     }
   },
@@ -266,10 +274,18 @@ const game = {
   // Stops the timer
   stopTimer: function() {
     clearInterval(game.timerInterval);
+    game.timerInterval = undefined;
+    console.log(game.timerInterval)
     // game.timerE.style.display = 'none';
   },
 
   populatePHealth: function(health) {
+    for (let i = 0; i < game.pHealth; i++) {
+      if (game.pHealthE.lastChild !== null) {
+        game.pHealthE.lastChild.remove();
+      }
+    }
+
     game.pHealth = health;
     for (let i = 0; i < health; i++) {
       let healthE = document.createElement('img');
@@ -280,6 +296,12 @@ const game = {
   },
 
   populateEHealth: function(health) {
+    for (let i = 0; i < game.eHealth; i++) {
+      if (game.eHealthE.lastChild !== null) {
+        game.eHealthE.lastChild.remove();
+      }
+    }
+
     game.eHealth = health;
     for (let i = 0; i < health; i++) {
       let healthE = document.createElement('img');
@@ -291,6 +313,11 @@ const game = {
 
   // Initializes the level
   startLevel: function(level) {
+    if (game.timerInterval !== undefined) {
+      game.stopTimer();
+    }
+
+    console.log(level);
     game.background.src = `./images/backgrounds/bg-lvl-${level}.png`;
     game.populateEHealth(4 + level);
     game.populatePHealth(3);
@@ -303,7 +330,7 @@ const game = {
 
 
 game.startBtn.addEventListener('click', function() {
-  game.startLevel();
+  game.startLevel(1);
 
   game.answer1E.addEventListener('click', function() {
     game.checkAnswer(game.currentQuestion.choices[0]);
