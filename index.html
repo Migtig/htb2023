@@ -18,7 +18,6 @@
   </head>
   <body>
     <div class="wrapper">
-
       <!--------------- START MENU Screen --------------->
       <section class="start-menu" id="start-menu">
         <!-- <img src="images/logo.svg" alt="logo" /> -->
@@ -88,7 +87,6 @@
         <div class="start-game" id="start-game">Start Game</div>
       </section>
 
-
       <!--------------- INTRO Screen --------------->
       <section class="intro-scene" id="intro-scene">
         <p>
@@ -117,7 +115,6 @@
         <div class="continue start-game" id="continue">Continue ...</div>
       </section>
 
-
       <!--------------- LEVEL/GAMEPLAY Screen --------------->
       <section class="game-box" id="game-box">
         <div class="controls-box">
@@ -133,16 +130,11 @@
             alt="city at night"
           />
 
-          <div
-            id="gpt-sprite"
-            class="gpt-idle"
-          ></div>
+          <div id="gpt-sprite" class="gpt-idle"></div>
 
           <div id="gpt-health">5</div>
 
-          <div class="player-idle" id="player-sprite">
-
-          </div>
+          <div class="player-idle" id="player-sprite"></div>
           <div id="player-health">3</div>
         </div>
 
@@ -157,23 +149,29 @@
             <button type="button" class="answer-btn" id="answer-3"></button>
           </div>
         </div>
-
       </section>
 
       <!--------------- GAME OVER Screen --------------->
       <section id="game-over-screen" class="game-over-screen">
-        <p>Game Over</p>
+        <p class="title">Game Over</p>
         <p>
           ChatGPT took your beloved Vancouver web dev job... You lose your
           $2800/month 1-bedroom basement suite, and you can no longer afford the
           $11 for a loaf of bread at Save On Foods. Life is over, God is dead,
           and you have to move back to Calgary...
         </p>
+        <div class="play-again start-game" id="play-again">Play again?</div>
       </section>
 
-
       <section id="you-win-screen" class="you-win-screen">
-
+        <p class="title">Congrats!</p>
+        <p>
+          You defeated ChatGPT! Your boss grudgingly admits defeat, and allows
+          you to keep working. The unstoppable march of progress may not have
+          been halted, but at least you've shown that it can be fought. Keep
+          fighting the good fight, coder!
+        </p>
+        <div class="play-again start-game" id="play-again">Play again?</div>
       </section>
     </div>
   </body>

@@ -114,9 +114,11 @@ const startGameBtn = document.getElementById("start-game");
 const startMenu = document.getElementById("start-menu");
 const introScene = document.getElementById("intro-scene");
 const continueBtn = document.getElementById("continue");
+const playAgainBtn = document.getElementById("play-again");
+const winScreen = document.getElementById("you-win-screen");
+const gameOverScreen = document.getElementById("game-over-screen");
 const gameBox = document.getElementById("game-box");
 const wrapper = document.querySelector(".wrapper");
-
 
 startGameBtn.addEventListener("click", function () {
   startMenu.style.display = "none";
@@ -129,12 +131,18 @@ continueBtn.addEventListener("click", function () {
   wrapper.style.maxWidth = "800px";
 });
 
+playAgainBtn.addEventListener("click", function () {
+  winScreen.style.display = "none";
+  gameOverScreen.style.display = "none";
+  gameBox.style.display = "flex";
+});
+
 const game = {
-  startBtn: document.getElementById('start-btn'),
+  startBtn: document.getElementById("start-btn"),
 
   // Elements for the player and enemy sprites
-  enemyE: document.getElementById('gpt-sprite'),
-  playerE: document.getElementById('player-sprite'),
+  enemyE: document.getElementById("gpt-sprite"),
+  playerE: document.getElementById("player-sprite"),
 
   // Keeps track of the current level
   level: 1,
@@ -143,28 +151,29 @@ const game = {
   currentQuestion: undefined,
 
   // Elements for the question and answers
-  questionE: document.getElementById('question'),
-  answer1E: document.getElementById('answer-1'),
-  answer2E: document.getElementById('answer-2'),
-  answer3E: document.getElementById('answer-3'),
+  questionE: document.getElementById("question"),
+  answer1E: document.getElementById("answer-1"),
+  answer2E: document.getElementById("answer-2"),
+  answer3E: document.getElementById("answer-3"),
 
   // Keeps track of the timer
   timer: undefined,
-  timerE: document.getElementById('timer'),
+  timerE: document.getElementById("timer"),
   timerInterval: undefined,
 
   // Keeps track of the player and enemy health
   pHealth: 3,
-  pHealthE: document.getElementById('player-health'),
+  pHealthE: document.getElementById("player-health"),
   eHealth: 5,
-  eHealthE: document.getElementById('gpt-health'),
+  eHealthE: document.getElementById("gpt-health"),
 
-  generateQuestion: function() {
+  generateQuestion: function () {
     // Picks a random question from the bank of unanswered questions, then removes it from the bank so it can't be picked again
-    game.currentQuestion = questions[Math.floor(Math.random() * questions.length)];
+    game.currentQuestion =
+      questions[Math.floor(Math.random() * questions.length)];
     questions = questions.filter((index) => {
       return index !== game.currentQuestion;
-    })
+    });
 
     // Displays the question and answers
     game.questionE.textContent = game.currentQuestion.question;
@@ -172,17 +181,17 @@ const game = {
     game.answer2E.textContent = game.currentQuestion.choices[1];
     game.answer3E.textContent = game.currentQuestion.choices[2];
 
-    game.questionE.style.display = 'block';
-    game.answer1E.style.display = 'block';
-    game.answer2E.style.display = 'block';
-    game.answer3E.style.display = 'block';
+    game.questionE.style.display = "block";
+    game.answer1E.style.display = "block";
+    game.answer2E.style.display = "block";
+    game.answer3E.style.display = "block";
 
     // Starts the timer
     game.startTimer(game.level);
   },
 
   // Damages the player
-  hitPlayer: function() {
+  hitPlayer: function () {
     game.pHealth -= 1;
     game.pHealthE.textContent = game.pHealth;
     if (game.pHealth === 0) {
@@ -191,7 +200,7 @@ const game = {
   },
 
   // Damages the enemy
-  hitEnemy: function() {
+  hitEnemy: function () {
     game.eHealth -= 1;
     game.eHealthE.textContent = game.eHealth;
     if (game.eHealth === 0) {
@@ -200,22 +209,21 @@ const game = {
   },
 
   // Animates the death of the enemy
-  enemyDeath: function() {
-    console.log('enemy death');
+  enemyDeath: function () {
+    console.log("enemy death");
     // TODO: Add enemy death animation
   },
 
   // Animates the death of the player
-  playerDeath: function() {
-    console.log('player death');
+  playerDeath: function () {
+    console.log("player death");
     // TODO: Add player death animation
   },
 
   // Checks if a question was answered correctly
-  checkAnswer: function(answer) {
+  checkAnswer: function (answer) {
     // Stops the timer
     game.stopTimer();
-
 
     if (answer === game.currentQuestion.answer) {
       game.hitEnemy();
@@ -223,14 +231,14 @@ const game = {
       game.hitPlayer();
     }
 
-    game.questionE.style.display = 'none';
-    game.answer1E.style.display = 'none';
-    game.answer2E.style.display = 'none';
-    game.answer3E.style.display = 'none';
+    game.questionE.style.display = "none";
+    game.answer1E.style.display = "none";
+    game.answer2E.style.display = "none";
+    game.answer3E.style.display = "none";
   },
 
   // Counts down the timer by 1 second
-  countTimerDown: function() {
+  countTimerDown: function () {
     game.timerE.textContent = game.timer;
     game.timer -= 1;
     if (game.timer === 0) {
@@ -240,38 +248,33 @@ const game = {
   },
 
   // Starts the timer
-  startTimer: function(level) {
-    game.timer = 40 - (level * 10);
-    game.timerE.style.display = 'block';
+  startTimer: function (level) {
+    game.timer = 40 - level * 10;
+    game.timerE.style.display = "block";
     game.timerE.textContent = game.timer;
     game.timerInterval = setInterval(game.countTimerDown, 1000);
   },
 
   // Stops the timer
-  stopTimer: function() {
+  stopTimer: function () {
     clearInterval(game.timerInterval);
     // game.timerE.style.display = 'none';
   },
 
   // Initializes the level
-  startLevel: function(level) {
+  startLevel: function (level) {},
+};
 
-  },
-
-
-}
-
-
-game.startBtn.addEventListener('click', function() {
+game.startBtn.addEventListener("click", function () {
   game.generateQuestion();
 
-  game.answer1E.addEventListener('click', function() {
+  game.answer1E.addEventListener("click", function () {
     game.checkAnswer(game.currentQuestion.choices[0]);
   });
-  game.answer2E.addEventListener('click', function() {
+  game.answer2E.addEventListener("click", function () {
     game.checkAnswer(game.currentQuestion.choices[1]);
   });
-  game.answer3E.addEventListener('click', function() {
+  game.answer3E.addEventListener("click", function () {
     game.checkAnswer(game.currentQuestion.choices[2]);
   });
 });
