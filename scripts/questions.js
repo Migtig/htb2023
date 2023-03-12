@@ -151,6 +151,7 @@ const game = {
   // Keeps track of the timer
   timer: undefined,
   timerE: document.getElementById('timer'),
+  timerInterval: undefined,
 
   // Keeps track of the player and enemy health
   pHealth: 3,
@@ -243,13 +244,13 @@ const game = {
     game.timer = 40 - (level * 10);
     game.timerE.style.display = 'block';
     game.timerE.textContent = game.timer;
-    setInterval(game.countTimerDown, 1000);
+    game.timerInterval = setInterval(game.countTimerDown, 1000);
   },
 
   // Stops the timer
   stopTimer: function() {
-    clearInterval(game.countTimerDown, 1000);
-    game.timerE.style.display = 'none';
+    clearInterval(game.timerInterval);
+    // game.timerE.style.display = 'none';
   },
 
   // Initializes the level
