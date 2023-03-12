@@ -152,8 +152,7 @@ svg path {
   background-color: #a8a8da;
 }
 .game-bg-img {
-  /* object-fit: cover; */
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 .action-box {
@@ -162,7 +161,7 @@ svg path {
 
 #player-sprite {
   position: absolute;
-  left: 0;
+  left: 2rem;
   bottom: 0;
 }
 
@@ -184,15 +183,51 @@ svg path {
   }
 }
 
+.player-attack {
+  background-image: url(../images/sprites/player-attack.png);
+  width: 96px;
+  height: 96px;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  animation: playerAttack 1.5s steps(5) 1;
+}
+
+@keyframes playerAttack {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -480px 0;
+  }
+}
+
+.player-hurt {
+  background-image: url(../images/sprites/player-hurt.png);
+  width: 96px;
+  height: 96px;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  animation: playerHurt 0.5s steps(4) infinite;
+}
+
+@keyframes playerHurt {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -384px 0;
+  }
+}
+
 #player-health {
   position: absolute;
   bottom: 4rem;
   left: 5rem;
-  width: 2rem;
+  /* width: 2rem; */
 
   text-align: center;
   font-size: 2rem;
-  background-color: white;
+  /* background-color: white; */
 }
 
 #gpt-sprite {
@@ -219,20 +254,70 @@ svg path {
   }
 }
 
+.gpt-attack {
+  background-image: url(../images/sprites/gpt-attack.png);
+  width: 96px;
+  height: 96px;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  animation: gptAttack 1.5s steps(8) 1;
+}
+
+@keyframes gptAttack {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -768px 0;
+  }
+}
+
+.gpt-hurt {
+  background-image: url(../images/sprites/gpt-hurt.png);
+  width: 96px;
+  height: 96px;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  animation: gptHurt 0.3s steps(2) infinite;
+}
+
+@keyframes gptHurt {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -192px 0;
+  }
+}
+
+
 #gpt-health {
   position: absolute;
   top: 2rem;
   right: 9rem;
-  width: 2rem;
+  /* width: 2rem; */
 
   text-align: center;
   font-size: 2rem;
-  background-color: white;
+  /* background-color: white; */
+}
+
+/* CSS ANIMATIONS FOR:
+- .gpt-attack
+- .gpt-death
+- .player-death
+- .gpt-hurt
+- .player-hurt
+ */
+
+.health {
+  padding: 2px;
 }
 
 #timer {
-  margin: 0 auto;
+  margin: 0 auto 1rem;
   text-align: center;
+  font-size: 2rem;
 }
 
 #question {
