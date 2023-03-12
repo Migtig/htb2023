@@ -1,6 +1,6 @@
 "use strict";
 
-const sprite = document.getElementById("sprite");
+const gptSprite = document.getElementById("gpt-sprite");
 const frames = [
   "gpt-idle-frame1.png",
   "gpt-idle-frame2.png",
@@ -10,7 +10,7 @@ const frames = [
 let index = 0;
 
 function animateSprite() {
-  sprite.src = "images/sprites/" + frames[index];
+  gptSprite.src = "images/sprites/" + frames[index];
   index++;
   if (index == frames.length) {
     index = 0;
