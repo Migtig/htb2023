@@ -1,5 +1,5 @@
 // Question Bank
-const questions = [
+const questionsBank = [
   // Level 1
   {
     question: "What does HTML stand for?",
@@ -106,3 +106,85 @@ const questions = [
     answer: "splice()",
   },
 ];
+
+let questions = questionsBank;
+
+
+const game = {
+  enemyE: document.getElementById('gpt-sprite'),
+  playerE: document.getElementById('player-sprite'),
+
+  currentQuestion: undefined,
+
+  questionE: document.getElementById('question'),
+  answer1E: document.getElementById('answer-1'),
+  answer2E: document.getElementById('answer-2'),
+  answer3E: document.getElementById('answer-3'),
+
+  timer: 20,
+  timerE: document.getElementById('timer'),
+
+  pHealth: 3,
+  pHealthE: document.getElementById('player-health'),
+
+  eHealth: 5,
+  eHealthE: document.getElementById('enemy-health'),
+
+  generateQuestion: function() {
+    game.currentQuestion = questions[Math.floor(Math.random() * questions.length)];
+    questions = questions.filter((index) => {
+      return index !== game.currentQuestion;
+  })
+    game.questionE.textContent = game.currentQuestion.question;
+    game.answer1E.textContent = game.currentQuestion.choices[0];
+    game.answer2E.textContent = game.currentQuestion.choices[1];
+    game.answer3E.textContent = game.currentQuestion.choices[2];
+  },
+
+  hitPlayer: function() {
+    game.pHealth -= 1;
+    game.pHealthE.textContent = game.pHealth;
+  },
+
+  hitEnemy: function() {
+    game.eHealth -= 1;
+    game.eHealthE.textContent = game.eHealth;
+  },
+
+  enemyDeath: function() {
+    // TODO: Add enemy death animation
+  },
+
+  playerDeath: function() {
+    // TODO: Add player death animation
+  },
+
+  checkAnswer: function(answer) {
+    if (answer === game.currentQuestion.answer) {
+      game.hitEnemy();
+    } else {
+      game.hitPlayer();
+    }
+  },
+
+  countTimerDown: function() {
+    game.timerE.textContent = game.timer;
+    game.timer -= 1;
+    if (game.timer === 0) {
+      game.hitPlayer();
+      game.timer = 20;
+    }
+  },
+
+  startTimer: function() {
+    game.timerE.textContent = game.timer;
+    setInterval(game.countTimerDown, 1000);
+  },
+
+  stopTimer: function() {
+    clearInterval(game.countTimerDown);
+  },
+
+
+
+}

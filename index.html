@@ -18,8 +18,13 @@
   </head>
   <body>
     <div class="wrapper">
-      <section id="start-menu"></section>
-      <section id="intro-scene"></section>
+      <section id="start-menu">
+
+      </section>
+
+      <section id="intro">
+
+      </section>
 
       <section class="game-level-1" id="lvl-1">
         <div class="controls-box">
@@ -27,6 +32,7 @@
           <div class="level-info">Level 1</div>
           <div class="quit">Quit</div>
         </div>
+
         <div class="action-box" id="action-box">
           <!-- This is where the sprites and background will go -->
           <img
@@ -42,14 +48,17 @@
               alt="GPT idle"
             />
           </div>
+          <div id="enemy-health">5</div>
           <img
             class="player-idle-standing"
+            id="player-sprite"
             src="images/sprites/player-idle.png"
             alt="player-idle standing"
           />
+          <div id="player-health">3</div>
         </div>
         <div class="options-box">
-          <div class="timer"></div>
+          <div id="timer"></div>
 
           <h2 id="question">What does CSS stand for?</h2>
 
@@ -64,12 +73,12 @@
             </label>
             <label>
               <input type="radio" name="answer3" id="answer-3" />
-              C) Computer Science Standards
+              C) Cascading Style Sheets
             </label>
-            <label>
+            <!-- <label>
               <input type="radio" name="answer4" id="answer-4" />
               D) Cascading Style Sheets
-            </label>
+            </label> -->
           </div>
         </div>
       </section>
